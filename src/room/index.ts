@@ -33,8 +33,10 @@ export const roomHandler = (socket: Socket) => {
   };
 
   const leaveRoom = ({ peerId, roomId }: IRoomParams) => {
+    console.log("#########  BEFORE  #########", { rooms });
     rooms[roomId] =
       rooms[roomId] && rooms[roomId].filter((id) => id !== peerId);
+    console.log("#########  BEFORE  #########", { rooms });
     socket.to(roomId).emit("user-disconnected", peerId);
   };
   socket.on("create-room", createRoom);
